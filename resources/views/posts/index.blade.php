@@ -7,7 +7,17 @@
         @if(count($posts) > 0)
             @foreach($posts as $post)
                 <div class="card border-secondary mb-3">
-                    <div class="card-header">{{$post->user->name}} || user info</div>
+                    <div class="card-header">
+                        {{$post->user->name}} || user info
+                        <div class="float-right">
+                            <a href="/posts/{{$post->id}}/edit" class="btn btn-success">...</a>
+                            <form class="d-inline" method="post" action="/posts/{{$post->id}}">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger">X</button>
+                            </form>
+                        </div>
+                    </div>
                     <div class="card-body">
                         <h4 class="card-title">{{$post->title}}</h4>
                         <p class="card-text text-muted">{{$post->body}}</p>

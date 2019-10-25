@@ -70,7 +70,8 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        return view('posts.edit')->with('post', $post);
     }
 
     /**
@@ -82,7 +83,13 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->update([
+            'title' => $request->title,
+            'body' => $request->body
+        ]);
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -93,6 +100,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post_to_delete = Post::findOrFail($id);
+        $post_to_delete->delete();
+
+        return redirect()->route('posts.index');
     }
 }
