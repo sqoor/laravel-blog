@@ -21,7 +21,10 @@
                     <div class="card-body">
                         <h4 class="card-title">{{$post->title}}</h4>
                         <p class="card-text text-muted">{{$post->body}}</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago || {{$post->created_at}}</small></p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/posts/{{$post->id}}" class="btn btn-block btn-light">Comments</a>
                     </div>
 
                 </div>

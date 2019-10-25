@@ -59,6 +59,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::findOrFail($id);
+//        dd($post->comments);
         return view('posts.detail')->with('post', $post);
     }
 
