@@ -9,6 +9,11 @@
         <p>{{$post->body}}</p>
         <hr class="m-5">
         <div class="mb-5">
+            @guest
+                <a href="/login">
+                    Register to make a comment
+                </a>
+            @else
             <form class="w-75 mb-5" method="post" action="/comments/store">
                 @csrf
                 <div class="form-group">
@@ -24,26 +29,26 @@
                 </div>
                 <button type="submit" class="btn btn-dark float-right">Submit</button>
             </form>
+            @endguest
         </div>
         <div class="text-muted mt-5" style="margin-top: 20%">
             <h5>Comments List</h5>
         </div>
-        <div class="m-5">
-            <div class="card">
-                <div class="card-header">
-                    <img src="..." width="50" alt="comment author" class="rounded-circle float-left">
-                    <span class=ml-5"">Author name</span>
-                    {{--                    Header || comment author name and image and creation time--}}
-                </div>
-                <div class="card-body">The comment body should be written here and it can be quite long text</div>
-                <div class="card-footer">Footer || I guess we don't need this part</div>
-            </div>
-        </div>
 
-        actual comments
+
         @foreach($post->comments as $comment)
-            <p>{{$comment->comment}}</p>
-            <p>author: {{$comment->user->name}}</p>
+            <div class="m-5">
+                <div class="card">
+                    <div class="card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" width="50"
+                             alt="{{$comment->user->name}}" class="rounded-circle float-left">
+                        <span class="ml-2 text-muted" style="margin-top: -50px">{{$comment->user->name}}</span>
+                        {{--                    Header || comment author name and image and creation time--}}
+                    </div>
+                    <div class="card-body">{{$comment->comment}}</div>
+                    <div class="card-footer">{{$comment->created_at}}</div>
+                </div>
+            </div>
         @endforeach
     </div>
 @endsection

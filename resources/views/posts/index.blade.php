@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="container mt-2 q">
-        @include('posts.create-post')
+        @include('inc.create-post')
         <hr class="my-5">
         @if(count($posts) > 0)
             @foreach($posts as $post)
                 <div class="card border-secondary mb-3">
                     <div class="card-header">
-                        {{$post->user->name}} || user info
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/User_Avatar_2.png" width="50"
+                             <span class="ml2">{{$post->user->name}}</span>
                         <div class="float-right">
                             <a href="/posts/{{$post->id}}/edit" class="btn btn-success">...</a>
                             <form class="d-inline" method="post" action="/posts/{{$post->id}}">

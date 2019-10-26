@@ -11,8 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome2');
+Route::get('/', function() {
+    $posts = \App\Post::orderBy('created_at', 'desc')->paginate(5);
+    return view('welcome2')->with('posts', $posts);
 });
 
 Auth::routes();
